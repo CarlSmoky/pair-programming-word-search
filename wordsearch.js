@@ -1,42 +1,30 @@
 const wordSearch = (letters, word) => {
+  let result = false;
+  if (letters.length === 0) {
+    return result;
+  }
   const horizontalJoin = letters.map((ls) => ls.join(""));
-  console.log(horizontalJoin);
   for (let l of horizontalJoin) {
-    //console.log(l);
-    if (l.includes(word)) return true;
+    if (l.includes(word)) result = true;
   }
-  return false;
+  return result;
 };
 
-const varticalJoint = function (matrix, word) {
-  let newMatrix = [];
-  for (let row = 0; row < matrix[0].length; row++) {
+const varticalJoint = function(letters, word) {
+  let newLetters = [];
+  for (let row = 0; row < letters[0].length; row++) {
     let newRow = [];
-    for (let col = 0; col < matrix.length; col++) {
-      newRow.push(matrix[col][row]);
+    for (let col = 0; col < letters.length; col++) {
+      newRow.push(letters[col][row]);
     }
-    newMatrix.push(newRow);
+    newLetters.push(newRow);
   }
-  //console.log(newMatrix);
-  const varticalArray = newMatrix.map((ls) => ls.join(""));
-  console.log(varticalArray);
+
+  const varticalArray = newLetters.map((ls) => ls.join(""));
   for (let l of varticalArray) {
-    //console.log(l);
     if (l.includes(word)) return true;
   }
   return false;
 };
 
-console.log(varticalJoint([
-    ['A', 'W', 'C', 'F', 'Q', 'U', 'A', 'L'],
-    ['S', 'E', 'I', 'N', 'F', 'E', 'L', 'D'],
-    ['Y', 'F', 'C', 'F', 'Q', 'U', 'A', 'L'],
-    ['H', 'M', 'J', 'T', 'E', 'V', 'R', 'G'],
-    ['W', 'H', 'C', 'S', 'Y', 'E', 'R', 'L'],
-    ['B', 'F', 'R', 'E', 'N', 'E', 'Y', 'B'],
-    ['U', 'B', 'T', 'W', 'A', 'P', 'A', 'I'],
-    ['O', 'D', 'C', 'A', 'K', 'U', 'A', 'S'],
-    ['E', 'Z', 'K', 'F', 'Q', 'U', 'A', 'L'],
-  ], 'ASY'));
-
-module.exports = wordSearch;
+module.exports = {wordSearch, varticalJoint};
